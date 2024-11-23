@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   pull_request:
     branches:
-      - main # PR 생성 시 테스트 실행
+      - master # PR 생성 시 테스트 실행
   push:
     branches:
-      - main # main 브랜치에 Push 발생 시 배포 진행
+      - master # main 브랜치에 Push 발생 시 배포 진행
 
 jobs:
   # 1. PR에서의 테스트 및 코드 검증
