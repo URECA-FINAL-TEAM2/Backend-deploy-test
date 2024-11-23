@@ -73,6 +73,15 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_USERNAME/beauty-meongdang:latest
 
+      - name: Create application.properties
+        run: |
+          mkdir -p src/main/resources
+          echo "spring.datasource.url=jdbc:h2:mem:testdb" >> src/main/resources/application.properties
+          echo "spring.datasource.driver-class-name=org.h2.Driver" >> src/main/resources/application.properties
+          echo "spring.datasource.username=sa" >> src/main/resources/application.properties
+          echo "spring.datasource.password=password" >> src/main/resources/application.properties
+          echo "spring.jpa.hibernate.ddl-auto=create-drop" >> src/main/resources/application.properties
+
       - name: Deploy to Server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
